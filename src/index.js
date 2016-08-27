@@ -1,30 +1,43 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import jsonp from 'jsonp';
-import WPQuery from './actions/wpsearch';
-import SearchBar from './components/SearchBar';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import jsonp from 'jsonp'
+import WPQuery from './actions/wpsearch'
+import SearchBar from './components/SearchBar'
+import ArticleList from './components/ArticleList'
 
 class App extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 
 		// Initialise state
-		this.state = { articles: [] };
+		this.state = { articles: [] }
 
 		// component will render with its state equal to the Wikipedia Query result
-		jsonp(WPQuery({action: 'opensearch', search:'shark'}), null, (err, articles) => {
+		jsonp(WPQuery({
+			action:'query',
+			format:'json',
+			list:'search',
+			srsearch:'shark',
+			srwhat:'text',
+			utf8:1,
+			formatversion:'latest',
+			srprop:'timestamp|snippet'
+		}), null, (err, articles) => {
 			if (err) {
-				console.error(err.message);
+				console.error(err.message)
 			} else {
-				this.setState({ articles })
-				console.log(this.state);
+				this.setState({ articles: articles.query.search })
+				console.log(this.state.articles)
 			}
 		});
 	}
 
 	render() {
 		return (
-			<SearchBar />
+			<div>
+				<SearchBar />
+				<ArticleList articles={this.state.articles} />
+			</div>
 		)
 	}
 }

@@ -1,7 +1,7 @@
 import objectToUriParams from '../helpers/objectToUriParams';
 
 // access Wikipedia API by passing in config items
-const WPQuery = (config = {action: 'opensearch', search: 'frog'}, callback) => {
+const WPQuery = (config = {format:'json'}, callback) => {
 	// Wikipedia API endpoint
 	const baseUrl = 'https://en.wikipedia.org/w/api.php';
 
