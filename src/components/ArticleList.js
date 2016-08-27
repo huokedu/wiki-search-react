@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ArticleListItem from './ArticleListItem'
 
-const ArticleList = (props) => {
+const ArticleList = ({articles}) => {
 
-	// return a new array of list items using timestamp as unique key
-	const articleItems = props.articles.map((article) => {
-		return <ArticleListItem article={article} key={article.timestamp} />
+	console.log(articles)
+
+	const articleItems = articles.map((article) => {
+		return <ArticleListItem article={article} key={article.pageid} />
 	})
 
 	return (
-		<ul className="list-group">
+		<ul className="col-md-6 list-group">
 			{articleItems}
 		</ul>
 	)

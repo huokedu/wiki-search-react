@@ -5,8 +5,9 @@ const ArticleListItem = ({ article }) => {
 
 	return (
 		<li className="list-group-item">
+			<img src={article.thumbnail.source} height={article.thumbnail.height} width={article.thumbnail.width}/>
 			<div className="header">{article.title}</div>
-			<div className="description" dangerouslySetInnerHTML={{__html:article.snippet}}></div>
+			{/* <div className="description">{article.terms["description"]}</div> */}
 		</li>
 	)
 }

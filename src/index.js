@@ -14,20 +14,25 @@ class App extends Component {
 
 		// component will render with its state equal to the Wikipedia Query result
 		jsonp(WPQuery({
-			action:'query',
-			format:'json',
-			list:'search',
-			srsearch:'shark',
-			srwhat:'text',
-			utf8:1,
-			formatversion:'latest',
-			srprop:'timestamp|snippet'
+			action:"query",
+			format:"json",
+			generator:"prefixsearch",
+			prop:"pageprops|pageimages|pageterms",
+			ppprop:"displaytitle",
+			piprop:"thumbnail",
+			pithumbsize:"160",
+			pilimit:"6",
+			wbptterms:"description",
+			gpssearch:"sharks",
+			gpsnamespace:"0",
+			gpslimit:"6"
 		}), null, (err, articles) => {
 			if (err) {
 				console.error(err.message)
 			} else {
-				this.setState({ articles: articles.query.search })
-				console.log(this.state.articles)
+				// convert returned objects into an array of objects to be consumed in ArticleList by ArticleListItem
+				const resultArray = Object.keys(articles.query.pages).map((k) => articles.query.pages[k])
+				this.setState({ articles: resultArray })
 			}
 		});
 	}
@@ -35,8 +40,12 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<SearchBar />
-				<ArticleList articles={this.state.articles} />
+				<div className="row">
+					<SearchBar />
+				</div>
+				<div className="row">
+					<ArticleList articles={this.state.articles} />
+    		</div>
 			</div>
 		)
 	}
