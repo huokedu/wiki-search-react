@@ -4,13 +4,17 @@ import React from 'react'
 const ArticleListItem = ({ article }) => {
 
 	// ternary conditions can be used within JSX.
-	// check if article contains a prop called 'term', if so, render article.terms.description
+	// NOTE: article.title => link: link to wikipedia page should work with article.title,
+	// automatically replacing spaces with '_', but I do this manually here to be safe.
+	// NOTE: article.terms:check if article contains a prop called 'term', if so, render article.terms.description
 	return (
-		<li className="list-group-item">
-			<img src={article.thumbnail.source} height={article.thumbnail.height} width={article.thumbnail.width}/>
-			<div className="header">{article.title}</div>
-			{article.hasOwnProperty('terms') ? <div className="description">{article.terms.description}</div> : null}
-		</li>
+		<a className="suggestion-link" href={`//en.wikipedia.org/wiki/${article.title.replace(/ /g,'_')}`}>
+			<div className="suggestion-text">
+				<h3 className="suggestion-title"><em className="suggestion-highlight">{article.title}</em></h3>
+				{article.hasOwnProperty('terms') ? <p className="suggestion-description">{article.terms.description}</p> : null}
+			</div>
+			<div className="suggestion-thumbnail" style={{backgroundImage: `url(${article.thumbnail.source})`}}></div>
+		</a>
 	)
 }
 

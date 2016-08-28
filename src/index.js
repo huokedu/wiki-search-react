@@ -39,14 +39,12 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<div className="row">
-					<SearchBar />
+				<div className="search-container">
+					<form action="" className="pure-form" action="//www.wikipedia.org/search-redirect.php">
+						<SearchBar />
+						<ArticleList articles={this.state.articles} />
+					</form>
 				</div>
-				<div className="row">
-					<ArticleList articles={this.state.articles} />
-    		</div>
-			</div>
 		)
 	}
 }

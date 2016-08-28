@@ -10,9 +10,9 @@ const ArticleList = ({articles}) => {
 	})
 
 	return (
-		<ul className="col-md-6 list-group">
+		<div className="suggestion-dropdown">
 			{articleItems}
-		</ul>
+		</div>
 	)
 }
 export default ArticleList
