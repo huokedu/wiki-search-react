@@ -4,6 +4,7 @@ import jsonp from 'jsonp'
 import WPQuery from './actions/wpsearch'
 import SearchBar from './components/SearchBar'
 import ArticleList from './components/ArticleList'
+import ArticleDetail from './components/ArticleDetail'
 
 class App extends Component {
 	constructor(props) {
@@ -35,6 +36,7 @@ class App extends Component {
 				this.setState({ articles: resultArray })
 			}
 		});
+
 	}
 
 	render() {
@@ -42,6 +44,7 @@ class App extends Component {
 				<div className="search-container">
 					<form action="" className="pure-form" action="//www.wikipedia.org/search-redirect.php">
 						<SearchBar />
+						<ArticleDetail article={this.state.articles[0]} />
 						<ArticleList articles={this.state.articles} />
 					</form>
 				</div>
