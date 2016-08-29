@@ -16,9 +16,13 @@ class App extends Component {
 			firstResult: null
 		}
 
+		this.articleSearch('shark')
+	}
 
+	articleSearch(term) {
 		// component will render with its state equal to the Wikipedia Query result
 		jsonp(WPQuery({
+			gpssearch:term,
 			action:"query",
 			format:"json",
 			generator:"prefixsearch",
@@ -31,7 +35,6 @@ class App extends Component {
 			explaintext:"1",
 			exsentences:"3",
 			wbptterms:"description",
-			gpssearch:"sharks",
 			gpsnamespace:"0",
 			gpslimit:"6"
 		}), null, (err, articles) => {
@@ -46,14 +49,13 @@ class App extends Component {
 				 })
 			}
 		});
-
 	}
 
 	render() {
 		return (
 				<div className="search-container">
 					<form action="" className="pure-form" action="//www.wikipedia.org/search-redirect.php">
-						<SearchBar />
+						<SearchBar onSearchTermChange={term => this.articleSearch(term)} />
 						<ArticleDetail article={this.state.firstResult} />
 						<ArticleList articles={this.state.articles} />
 					</form>

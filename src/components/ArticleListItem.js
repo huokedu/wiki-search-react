@@ -13,7 +13,7 @@ const ArticleListItem = ({ article }) => {
 				<h3 className="suggestion-title"><em className="suggestion-highlight">{article.title}</em></h3>
 				{article.hasOwnProperty('terms') ? <p className="suggestion-description">{article.terms.description}</p> : null}
 			</div>
-			<div className="suggestion-thumbnail" style={{backgroundImage: `url(${article.thumbnail.source})`}}></div>
+			{article.hasOwnProperty('thumbnail') ? <div className="suggestion-thumbnail" style={{backgroundImage: `url(${article.thumbnail.source})`}}></div> : null}
 		</a>
 	)
 }
