@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import jsonp from 'jsonp'
@@ -52,10 +53,12 @@ class App extends Component {
 	}
 
 	render() {
+		// take function and return new function that can only execute once every .3s
+		const articleSearch = _.debounce((term) => { this.articleSearch(term) }, 300)
 		return (
 				<div className="search-container">
 					<form action="" className="pure-form" action="//www.wikipedia.org/search-redirect.php">
-						<SearchBar onSearchTermChange={term => this.articleSearch(term)} />
+						<SearchBar onSearchTermChange={articleSearch} />
 						<ArticleDetail article={this.state.firstResult} />
 						<ArticleList articles={this.state.articles} />
 					</form>
