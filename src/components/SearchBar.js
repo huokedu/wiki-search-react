@@ -8,11 +8,14 @@ class SearchBar extends Component {
 
 	// function to be called when user begins typing into input field
 	onInputChange(term) {
-		// on change, we set the state to term
-		this.setState({term})
-		// and call onSearchTermChange which comes from index.js
-		// we pass event.target.value to that function
-		this.props.onSearchTermChange(term)
+		// FIXME: to prevent errors, do not run search with empty string
+		if(term !== ''){
+			// on change, we set the state to term
+			this.setState({term})
+			// and call onSearchTermChange which comes from index.js
+			// we pass event.target.value to that function
+			this.props.onSearchTermChange(term)
+		}
 	}
 
 	render () {

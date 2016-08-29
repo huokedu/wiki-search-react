@@ -17,7 +17,7 @@ class App extends Component {
 			firstResult: null
 		}
 
-		this.articleSearch('shark')
+		// this.articleSearch('')
 	}
 
 	articleSearch(term) {
