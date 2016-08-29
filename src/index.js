@@ -11,18 +11,25 @@ class App extends Component {
 		super(props)
 
 		// Initialise state
-		this.state = { articles: [] }
+		this.state = {
+			articles: [],
+			firstResult: null
+		}
+
 
 		// component will render with its state equal to the Wikipedia Query result
 		jsonp(WPQuery({
 			action:"query",
 			format:"json",
 			generator:"prefixsearch",
-			prop:"pageprops|pageimages|pageterms",
+			prop:"pageprops|pageimages|pageterms|extracts",
 			ppprop:"displaytitle",
 			piprop:"thumbnail",
 			pithumbsize:"160",
 			pilimit:"6",
+			exintro:"1",
+			explaintext:"1",
+			exsentences:"3",
 			wbptterms:"description",
 			gpssearch:"sharks",
 			gpsnamespace:"0",
@@ -32,8 +39,11 @@ class App extends Component {
 				console.error(err.message)
 			} else {
 				// convert returned objects into an array of objects to be consumed in ArticleList by ArticleListItem
-				const resultArray = Object.keys(articles.query.pages).map((k) => articles.query.pages[k])
-				this.setState({ articles: resultArray })
+				const resultArray = Object.keys(articles.query.pages).map((key) => articles.query.pages[key])
+				this.setState({
+					articles: resultArray,
+					firstResult: resultArray[0]
+				 })
 			}
 		});
 
@@ -44,7 +54,7 @@ class App extends Component {
 				<div className="search-container">
 					<form action="" className="pure-form" action="//www.wikipedia.org/search-redirect.php">
 						<SearchBar />
-						<ArticleDetail article={this.state.articles[0]} />
+						<ArticleDetail article={this.state.firstResult} />
 						<ArticleList articles={this.state.articles} />
 					</form>
 				</div>

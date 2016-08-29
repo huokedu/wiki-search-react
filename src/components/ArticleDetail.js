@@ -8,17 +8,11 @@ const ArticleDetail = ({ article }) => {
 
 	return (
 		<div className="article-detail">
-			<div className="embed-responsive">
-				<iframe
-					src={`http://en.wikipedia.org/wiki/${article.title}`}
-					frameborder="0" width="100%"
-					className="embed-responsive-item"
-					style={{border: 'none'}}
-					>
-					</iframe>
+			<div className="article-detail-image">
+				{article.thumbnail ? <img src={article.thumbnail.source} /> : null}
 			</div>
-			<div className="details">
-				<div></div>
+			<div className="article-detail-extract">
+				<div>{article.extract}</div>
 				<div></div>
 			</div>
 		</div>

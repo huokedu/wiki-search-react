@@ -3,6 +3,7 @@ import ArticleListItem from './ArticleListItem'
 
 const ArticleList = ({articles}) => {
 
+	console.table(articles)
 	console.log(articles)
 
 	const articleItems = articles.map((article) => {

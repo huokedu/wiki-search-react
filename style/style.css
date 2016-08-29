@@ -115,3 +115,16 @@ input[name="search"]  {
 .thumbnail {
   background-color: #eee;
 }
+
+.article-detail-extract {
+	position: relative;
+	text-align: left;
+	font-size: 0.75rem;
+	color: #666;
+	min-height: 180px;
+	padding: 10px;
+}
+.article-detail-image {
+	float: left;
+	margin-right: 10px;
+}
