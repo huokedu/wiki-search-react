@@ -4,6 +4,7 @@ _Incremental Search for Wikipedia Articles_
 ![React Logo](http://codrspace.com/site_media/media/b66d60cc1ec21.png)
 ![Babel Logo](http://www.programwitherik.com/content/images/2015/07/babel.png)
 ![Webpack Logo](http://jstherightway.org/assets/img/webpack-logo.png)
+![Surge.sh Logo](https://avatars2.githubusercontent.com/u/11480641?v=3&s=200)
 
 
 ## API
@@ -22,6 +23,7 @@ The `<ArticleDetail>` component is mainly for testing the [MediaWiki API](https:
 - [ ] Hide `<ArticleDetail>` when no description exists. Currently it looks broken if no image exists for the searched article.
 - [ ] Show a default image fallback image for `<ArticleListItem>`
 - [ ] Implement Redux
+- [ ] Add random article button that disappears when user begins to search
 
 ----
 
