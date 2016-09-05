@@ -2,8 +2,8 @@ import React from 'react'
 
 const ArticleDetail = ({ article }) => {
 
-	if(!article) {
-		return <div>Loading...</div>
+	if(article === null) {
+		return <div>Start typing to search</div>
 	}
 
 	return (
